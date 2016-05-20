@@ -1,2 +1,3 @@
 # Android-Fintech-Party-Demo
-Demo client for Android login with simple functionality
+Demo biðlari Android, auðkennir og kallar á API með einfaldri virkni.
+(Í vinnslu)
