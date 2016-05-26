@@ -25,18 +25,18 @@ public class ApiConfig implements ApiSecretsProvider {
 
     private static final class Secrets {
         public String getSubscriptionKey() {
-            return "0729b067ccb145718fc3f41dba2af355";
-//            throw new RuntimeException("Enter your subscription key");
+//            return "0729b067ccb145718fc3f41dba2af355";
+            throw new RuntimeException("Enter your subscription key");
         }
 
         public String getClientId() {
-            return "FinTechDemoClientAndroid";
-//            throw new RuntimeException("Enter your client id");
+//            return "FinTechDemoClientAndroid";
+            throw new RuntimeException("Enter your client id");
         }
 
         public String getClientSecret() {
-            return "afb1a872-e73a-451e-8ff0-12e7272b2a28";
-//            throw new RuntimeException("Enter your client secret");
+//            return "afb1a872-e73a-451e-8ff0-12e7272b2a28";
+            throw new RuntimeException("Enter your client secret");
         }
     }
 
