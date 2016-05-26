@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_accounts"
+            android:icon="@drawable/ic_account_balance_black_24dp"
+            android:title="@string/accounts_caption" />
+        <item
+            android:id="@+id/nav_registry"
+            android:icon="@drawable/ic_contacts_black_24dp"
+            android:title="@string/national_registry_caption" />
+        <item
+            android:visible="false"
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Tools" />
+    </group>
+</menu>

@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Fintech Demo</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="transport_error">Ekki tókst að tengjast þjónustu</string>
+    <string name="waiting_title">Augnablik</string>
+    <string name="empty_list_caption">Engar færslur fundust</string>
+    <string name="error_could_not_connect">Get ekki tengst þjónustu, reyndu aftur</string>
+    <string name="refresh_token_expired_caption">Innskráningin þín er útrunnin. Vinsamlegast skráðu þig inn aftur</string>
+    <string name="general_credential_error">Hugsanlega er vandamálið tímabundið, ef það heldur áfram skráðu þig þá inn aftur</string>
+    <string name="general_credential_error_title">Villa við auðkenningu</string>
+    <string name="re_authenticate_prompt">Vinsamlegast skráðu þig inn aftur</string>
+    <string name="login_caption">Innskráning</string>
+    <string name="ok_caption">Í lagi</string>
+    <string name="error">Villa</string>
+    <string name="national_registry_caption">Þjóðskrá</string>
+    <string name="accounts_caption">Reikningar</string>
+    <string name="action_search_title">Leita eftir nafni eða kt.</string>
+    <string name="national_registry_empty_text">Leit í Þjóðskrá</string>
+</resources>

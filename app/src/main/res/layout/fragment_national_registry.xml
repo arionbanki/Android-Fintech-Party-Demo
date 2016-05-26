@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/partyName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/text_margin"
+        android:layout_marginTop="@dimen/text_margin"
+        android:text="Jón Agnar Agnarsson"
+        android:textColor="@color/colorPrimaryText"
+        android:textAppearance="?attr/textAppearanceListItem" />
+
+    <TextView
+        android:id="@+id/partyAddressLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/text_margin"
+        android:layout_marginTop="6dp"
+        android:layout_below="@id/partyName"
+        android:text="Eyjarslóð 5, 101 Reykjavík"
+        android:textColor="@color/colorSecondaryText"
+        android:textAppearance="?attr/textAppearanceListItemSmall" />
+</RelativeLayout>
