@@ -31,4 +31,13 @@
         android:gravity="center"
         android:text="@string/empty_list_caption"
         android:visibility="gone" />
+
+    <ProgressBar
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateOnly="true"
+        android:visibility="invisible"
+        android:id="@+id/progressbar"
+        />
 </FrameLayout>

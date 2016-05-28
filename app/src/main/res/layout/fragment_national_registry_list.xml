@@ -31,14 +31,4 @@
         android:visibility="invisible"
         android:id="@+id/progressbar"
          />
-
-    <!--<android.support.v4.widget.ContentLoadingProgressBar-->
-        <!--android:id="@+id/progressbar"-->
-        <!--style="?android:attr/progressBarStyleLarge"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:indeterminate="true"-->
-        <!--android:visibility="visible" />-->
-
 </FrameLayout>

@@ -27,10 +27,12 @@ import java.io.IOException;
 
 import is.arionbanki.arionapi.client.TransportException;
 import is.arionbanki.arionapi.oauth2.CredentialsException;
+import is.arionbanki.arionfintechdemo.AppData;
 import is.arionbanki.arionfintechdemo.FinTechApplication;
 import is.arionbanki.arionfintechdemo.R;
 import is.arionbanki.arionfintechdemo.fragments.AccountListFragment;
 import is.arionbanki.arionfintechdemo.fragments.NationalRegistryFragment;
+import is.arionbanki.arionfintechdemo.fragments.SettingsFragment;
 import is.arionbanki.arionfintechdemo.interfaces.SearchListener;
 
 public class MainActivity extends AppCompatActivity
@@ -102,13 +104,37 @@ public class MainActivity extends AppCompatActivity
             setTitle(null);
         }
 
+        setDrawerCheckedItem(fragment);
+
+        invalidateOptionsMenu();
+    }
+
+
+    private void setDrawerCheckedItem(Fragment fragment) {
+        if(fragment == null) return;
+
         if (FragmentTag.ACCOUNTS.equals(fragment.getTag())) {
             mNavigationView.setCheckedItem(R.id.nav_accounts);
         } else if (FragmentTag.NATIONAL_REGISTRY.equals(fragment.getTag())) {
             mNavigationView.setCheckedItem(R.id.nav_registry);
+        } else if(FragmentTag.SETTINGS.equals(fragment.getTag())) {
+            mNavigationView.setCheckedItem(R.id.nav_settings);
         }
+    }
 
-        invalidateOptionsMenu();
+    /**
+     * Dispatch onResume() to fragments.  Note that for better inter-operation
+     * with older versions of the platform, at the point of this call the
+     * fragments attached to the activity are <em>not</em> resumed.  This means
+     * that in some cases the previous state may still be saved, not allowing
+     * fragment transactions that modify the state.  To correctly interact
+     * with fragments in their proper state, you should instead override
+     * {@link #onResumeFragments()}.
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setDrawerCheckedItem(getCurrentFragment());
     }
 
     private Fragment getFragmentInstance(String tag) {
@@ -117,6 +143,8 @@ public class MainActivity extends AppCompatActivity
                 return AccountListFragment.newInstance();
             case FragmentTag.NATIONAL_REGISTRY:
                 return NationalRegistryFragment.newInstance();
+            case FragmentTag.SETTINGS :
+                return SettingsFragment.newInstance();
             default:
                 throw new IllegalStateException("Supply a fragment for the tag " + tag);
         }
@@ -169,7 +197,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_registry) {
             displayFragment(FragmentTag.NATIONAL_REGISTRY);
         } else if (id == R.id.nav_settings) {
-
+            displayFragment(FragmentTag.SETTINGS);
         }
 
         mDrawer.closeDrawer(GravityCompat.START);
@@ -226,9 +254,10 @@ public class MainActivity extends AppCompatActivity
         Snackbar.make(findViewById(R.id.fragment_container), R.string.error_could_not_connect, Snackbar.LENGTH_LONG).show();
     }
 
-    private void logout() {
+    public void logout() {
         FinTechApplication application = (FinTechApplication) getApplication();
         try {
+            AppData.getInstance().delete();
             application.getOAuth().deleteUserCredential(application.getCurrentUser());
         } catch (IOException e) {
             e.printStackTrace();
@@ -268,5 +297,6 @@ public class MainActivity extends AppCompatActivity
     private static final class FragmentTag {
         public static final String ACCOUNTS = "AccountListFragment";
         public static final String NATIONAL_REGISTRY = "NationalRegistryFragment";
+        public static final String SETTINGS = "SettingsFragment";
     }
 }

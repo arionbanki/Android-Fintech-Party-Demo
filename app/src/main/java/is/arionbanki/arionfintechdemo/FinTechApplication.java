@@ -13,10 +13,13 @@ import com.google.api.client.auth.oauth2.TokenResponseException;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import is.arionbanki.arionapi.ArionApiConstants;
 import is.arionbanki.arionapi.oauth2.CredentialsException;
+import is.arionbanki.arionapi.oauth2.JWTData;
 import is.arionbanki.arionapi.oauth2.OAuthWrapper;
 
 /**
@@ -120,6 +123,17 @@ public class FinTechApplication extends Application {
         return oauth;
     }
 
+    private void storeJWTData(TokenResponse tokenResponse) throws IOException {
+        JWTData jwt = JWTData.parse(tokenResponse.getAccessToken());
+
+        Map<String, String> claimsMap = new HashMap<>();
+
+        for (String key : jwt.keySet()) {
+            claimsMap.put(String.format("jwt.%s", key), jwt.getString(key));
+        }
+        AppData.getInstance().putAll(claimsMap);
+    }
+
     private class ProcessTokenRequest extends AsyncTask<String, Void, Message> {
 
         private final String TAG = ProcessTokenRequest.class.getSimpleName();
@@ -148,6 +162,7 @@ public class FinTechApplication extends Application {
 
                 logTokenInfo(tokenResponse);
 
+                storeJWTData(tokenResponse);
                 oauth.createAndStoreCredential(tokenResponse, getCurrentUser());
                 obj = tokenResponse;
             } catch (TokenResponseException e) {

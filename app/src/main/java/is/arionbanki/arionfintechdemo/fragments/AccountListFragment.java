@@ -33,6 +33,7 @@ public class AccountListFragment extends BaseFragment implements Handler.Callbac
     private ContentLoadingProgressBar bar;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private AccountController mController;
+    private ProgressBar mProgressBar;
 
     public AccountListFragment() {
     }
@@ -59,7 +60,7 @@ public class AccountListFragment extends BaseFragment implements Handler.Callbac
         mItems = new ArrayList<>();
 
         mEmptyView = view.findViewById(R.id.empty_recycler_view_text);
-
+        mProgressBar = (ProgressBar) view.findViewById(R.id.progressbar);
 
         mController = new AccountController(getFinTechApplication(), mItems);
         mController.addHandler(new Handler(this));
@@ -77,19 +78,27 @@ public class AccountListFragment extends BaseFragment implements Handler.Callbac
             }
         });
 
-        loadData();
-
+        loadDataWithSpinner();
         return view;
     }
 
-    private void loadData() {
+    private void loadDataWithSpinner() {
         setRefreshing(true);
+        loadData();
+    }
+
+    private void loadData() {
         mController.handleMessage(AccountController.MESSAGE_GET_ACCOUNTS, null);
     }
 
     public void setRefreshing(boolean refreshing) {
-        if (mSwipeRefreshLayout != null) {
-            mSwipeRefreshLayout.setRefreshing(refreshing);
+        if (refreshing) {
+            mProgressBar.setVisibility(View.VISIBLE);
+        } else {
+            mProgressBar.setVisibility(View.INVISIBLE);
+            if (mSwipeRefreshLayout != null) {
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
         }
     }
 
